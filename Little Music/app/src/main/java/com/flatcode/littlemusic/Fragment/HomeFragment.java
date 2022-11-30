@@ -55,6 +55,8 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(LayoutInflater.from(getContext()), container, false);
 
+        loadCategories();
+
         binding.showMore.setOnClickListener(v -> VOID.IntentExtra3(getContext(), CLASS.SHOW_MORE,
                 DATA.SHOW_MORE_TYPE, DATA.EDITORS_CHOICE, DATA.SHOW_MORE_NAME,
                 binding.name.getText().toString(), DATA.SHOW_MORE_BOOLEAN, DATA.EMPTY + B_one));
@@ -141,7 +143,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void start() {
-        loadCategories();
         loadPostEditorsChoice(DATA.EDITORS_CHOICE, list, adapter, binding.bar, binding.recyclerView, binding.empty);
         loadPostBy(DATA.VIEWS_COUNT, list2, adapter2, binding.bar2, binding.recyclerView2, binding.empty2);
         loadPostBy(DATA.LOVES_COUNT, list3, adapter3, binding.bar3, binding.recyclerView3, binding.empty3);

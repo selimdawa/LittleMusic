@@ -66,6 +66,10 @@ public class AlbumSongsActivity extends AppCompatActivity {
 
         binding.toolbar.close.setOnClickListener(v -> onBackPressed());
 
+        VOID.isInterested(binding.switchBar.interest, albumId, DATA.ALBUMS);
+        binding.switchBar.add.setOnClickListener(v ->
+                VOID.checkInterested(binding.switchBar.interest, DATA.ALBUMS, albumId));
+
         binding.toolbar.textSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

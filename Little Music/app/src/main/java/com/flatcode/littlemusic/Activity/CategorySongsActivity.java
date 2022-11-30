@@ -17,6 +17,7 @@ import com.flatcode.littlemusic.Model.Album;
 import com.flatcode.littlemusic.Model.Song;
 import com.flatcode.littlemusic.Unit.DATA;
 import com.flatcode.littlemusic.Unit.THEME;
+import com.flatcode.littlemusic.Unit.VOID;
 import com.flatcode.littlemusic.databinding.ActivityCategorySongsBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -68,6 +69,14 @@ public class CategorySongsActivity extends AppCompatActivity {
         });
 
         binding.toolbar.close.setOnClickListener(v -> onBackPressed());
+
+        VOID.isInterested(binding.switchBarAlbums.interest, categoryId, DATA.CATEGORIES);
+        binding.switchBarAlbums.add.setOnClickListener(v ->
+                VOID.checkInterested(binding.switchBarAlbums.interest, DATA.CATEGORIES, categoryId));
+
+        VOID.isInterested(binding.switchBarAlbums.interest, categoryId, DATA.CATEGORIES);
+        binding.switchBarAlbums.add.setOnClickListener(v ->
+                VOID.checkInterested(binding.switchBarAlbums.interest, DATA.CATEGORIES, categoryId));
 
         binding.toolbar.textSearch.addTextChangedListener(new TextWatcher() {
             @Override

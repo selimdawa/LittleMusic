@@ -72,6 +72,14 @@ public class ArtistSongsActivity extends AppCompatActivity {
 
         binding.toolbar.close.setOnClickListener(v -> onBackPressed());
 
+        VOID.isInterested(binding.switchBarAlbums.interest, artistId, DATA.ARTISTS);
+        binding.switchBarAlbums.add.setOnClickListener(v ->
+                VOID.checkInterested(binding.switchBarAlbums.interest, DATA.ARTISTS, artistId));
+
+        VOID.isInterested(binding.switchBarAlbums.interest, artistId, DATA.ARTISTS);
+        binding.switchBarAlbums.add.setOnClickListener(v ->
+                VOID.checkInterested(binding.switchBarAlbums.interest, DATA.ARTISTS, artistId));
+
         binding.toolbar.textSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

@@ -231,18 +231,19 @@ public class VOID {
         ref.child(id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //get views count
                 String lovesCount = DATA.EMPTY + snapshot.child(childDB).getValue();
-                if (lovesCount.equals(DATA.EMPTY) || lovesCount.equals(DATA.NULL)) {
+                if (lovesCount.equals(DATA.EMPTY) || lovesCount.equals(DATA.NULL))
                     lovesCount = DATA.EMPTY + DATA.ZERO;
+
+                int i = Integer.parseInt(lovesCount);
+                if (i > 0) {
+                    int removeLovesCount = Integer.parseInt(lovesCount) - 1;
+                    HashMap<String, Object> hashMap = new HashMap<>();
+                    hashMap.put(childDB, removeLovesCount);
+
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference(database);
+                    reference.child(id).updateChildren(hashMap);
                 }
-
-                long removeLovesCount = Long.parseLong(lovesCount) - 1;
-                HashMap<String, Object> hashMap = new HashMap<>();
-                hashMap.put(childDB, removeLovesCount);
-
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference(database);
-                reference.child(id).updateChildren(hashMap);
             }
 
             @Override
@@ -520,9 +521,12 @@ public class VOID {
         dialog.show();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference(nameDB);
         reference.child(id).removeValue().addOnSuccessListener(unused1 -> {
-            VOID.incrementItemRemoveCount(DB, idDB, childDB);
-            VOID.incrementItemRemoveCount(DB2, idDB2, childDB2);
-            VOID.incrementItemRemoveCount(DB3, idDB3, childDB3);
+            if ((DB != null) & (idDB != null) & (childDB != null))
+                VOID.incrementItemRemoveCount(DB, idDB, childDB);
+            if ((DB2 != null) & (idDB2 != null) & (childDB2 != null))
+                VOID.incrementItemRemoveCount(DB2, idDB2, childDB2);
+            if ((DB3 != null) & (idDB3 != null) & (childDB3 != null))
+                VOID.incrementItemRemoveCount(DB3, idDB3, childDB3);
             DATA.isChange = true;
             activity.onBackPressed();
             dialog.dismiss();

@@ -34,7 +34,7 @@ import java.util.HashMap;
 public class CategoryEditActivity extends AppCompatActivity {
 
     private ActivityCategoryAddBinding binding;
-    Activity activity = CategoryEditActivity.this;
+    private final Activity activity = CategoryEditActivity.this;
 
     String categoryId;
 
